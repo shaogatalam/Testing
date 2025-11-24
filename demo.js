@@ -18,6 +18,7 @@ export class UserTrackerPlugin {
     }
 
     handleClick(event) {
+        console.log("User clicked:", event.target);
         this.api.log("User clicked:", event.target);
 
         // Example usage of StorageManager inside plugin
