@@ -1,7 +1,10 @@
-export default function init(widget) {
-    console.log("[UserTrackerPlugin] Initialized");
+// ❗ PURE ES MODULE — NO BUILD STEP
+export default function initPlugin(api) {
+    api.log("User Tracker plugin running...");
 
     document.addEventListener("click", (e) => {
-        console.log("[Tracker] Click:", e.target);
+        api.log("User clicked:", e.target);
     });
+
+    api.widget.chatManager.sendSystemMessage("Tracking enabled");
 }
