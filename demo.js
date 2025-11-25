@@ -1,38 +1,27 @@
-export class BlackFridayOfferPlugin {
+export class CustomOfferPlugin {
     constructor(api, storage, modalCode) {
         this.api = api;
         this.storage = storage;
         this.modalCode = modalCode;
-
-        this.root = null;
-        this.closeModal = this.closeModal.bind(this);
+        this.dom = null;
     }
 
     init() {
-        this.api.log("Offer plugin active");
+        this.api.log("Custom Offer Plugin Loaded");
 
-        // Create modal using widget's renderer
-        this.root = this.api.renderCustomHtml(this.modalCode);
-
-        // Auto-bind any close buttons
-        this.root.querySelectorAll("[data-close]")
-            .forEach(btn => btn.addEventListener("click", this.closeModal));
-
-        // Auto-bind CTA button if exists
-        const cta = this.root.querySelector("[data-cta]");
-        if (cta) {
-            cta.addEventListener("click", () => {
-                this.api.log("User clicked CTA");
-            });
+        if (!this.modalCode) {
+            this.api.log("No modal code provided");
+            return;
         }
-    }
 
-    closeModal() {
-        if (this.root) this.root.remove();
+        this.dom = document.createElement("div");
+        this.dom.innerHTML = this.modalCode;
+
+        document.body.appendChild(this.dom);
     }
 
     destroy() {
-        this.closeModal();
-        this.api.log("Offer plugin destroyed");
+        if (this.dom) this.dom.remove();
+        this.api.log("Custom Offer Plugin Destroyed");
     }
 }
