@@ -7,17 +7,7 @@ export class CustomOfferPlugin {
     }
 
     init() {
-        this.api.log("Custom Offer Plugin Loaded");
-
-        if (!this.modalCode) {
-            this.api.log("No modal code provided");
-            return;
-        }
-
-        this.dom = document.createElement("div");
-        this.dom.innerHTML = this.modalCode;
-
-        document.body.appendChild(this.dom);
+        alert("Custom Offer Plugin Loaded");
     }
 
     destroy() {
