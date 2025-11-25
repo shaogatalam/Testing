@@ -7,7 +7,7 @@ export class CustomOfferPlugin {
     }
 
     init() {
-        alert("Custom Offer Plugin Loaded");
+        console.log("Custom Offer Plugin Loaded");
     }
 
     destroy() {
